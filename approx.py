@@ -21,9 +21,7 @@ u_x = a0_sol + a1_sol * x
 #numerator = u_x * L  # Multiply by L to work with numerator
 expanded_num = u_x.expand()  # Expand the numerator
 factored_u_x = expanded_num.collect([u1, u2])  # Group terms with u1 and u2
-#factored_u_x = grouped_num / L  # Divide back by L
 
 # Display the result
-#print("Original u(x):", u_x)
 print("Factored u(x):", factored_u_x)
-print(expanded_num)
+print(simplify(factored_u_x))

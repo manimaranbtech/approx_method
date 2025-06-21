@@ -1,7 +1,7 @@
-from sympy import symbols, Eq, solve
+from sympy import symbols, Eq, solve, simplify
 
 # Define symbols
-a0, a1, x1, x2, u1, u2, L = symbols('a0 a1 x1 x2 u1 u2 L')
+a0, a1, x, x1, x2, u1, u2, L = symbols('a0 a1 x x1 x2 u1 u2 L')
 
 # Define equations
 eq1 = Eq(u1, a0 + a1*x1)
@@ -14,6 +14,16 @@ solution = solve((eq1, eq2), (a0, a1))
 a0_sol = solution[a0].subs(x2 - x1, L)
 a1_sol = solution[a1].subs(x2 - x1, L)
 
-# Display the solutions
-print("a0 =", a0_sol)
-print("a1 =", a1_sol)
+# General expression for u(x)
+u_x = a0_sol + a1_sol * x
+
+# Factor out u1 and u2
+#numerator = u_x * L  # Multiply by L to work with numerator
+expanded_num = u_x.expand()  # Expand the numerator
+factored_u_x = expanded_num.collect([u1, u2])  # Group terms with u1 and u2
+#factored_u_x = grouped_num / L  # Divide back by L
+
+# Display the result
+#print("Original u(x):", u_x)
+print("Factored u(x):", factored_u_x)
+print(expanded_num)

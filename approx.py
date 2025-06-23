@@ -18,10 +18,11 @@ a1_sol = solution[a1].subs(x2 - x1, L)
 u_x = a0_sol + a1_sol * x
 
 # Factor out u1 and u2
-#numerator = u_x * L  # Multiply by L to work with numerator
 expanded_num = u_x.expand()  # Expand the numerator
 factored_u_x = expanded_num.collect([u1, u2])  # Group terms with u1 and u2
 
-# Display the result
-print("Factored u(x):", factored_u_x)
-print(simplify(factored_u_x))
+
+print(u_x)
+print(a0_sol)
+print(a1_sol)
+print(factored_u_x)
